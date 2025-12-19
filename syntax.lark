@@ -1,0 +1,30 @@
+start: statement*
+
+statement: const_decl | const_expr | value
+
+const_decl: "var" NAME "=" value
+
+const_expr: "^[" postfix_expr "]"
+
+postfix_expr: postfix_item+
+
+postfix_item: NAME | NUMBER | OP | FUNC
+
+value: NUMBER | array | dict
+
+array: "array" "(" [value ("," value)*] ")"
+
+dict: "{" pair* "}"
+pair: NAME "=" value ";"
+
+NUMBER: /0[xX][0-9a-fA-F]+/
+NAME: /[A-Z]+/
+OP: "+"
+
+FUNC: "max" | "sqrt"
+
+COMMENT: /#\|(.|\n)*?\|#/
+%ignore COMMENT
+
+%import common.WS
+%ignore WS

@@ -1,0 +1,5 @@
+var X = 0x1
+var Y = 0x2
+^[X Y +]
+^[X Y max]
+^[X sqrt]
